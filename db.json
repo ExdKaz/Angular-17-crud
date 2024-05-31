@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "firstName": "Abhishek",
+      "lastName": "Rana",
+      "dob": "1999-03-12T18:30:00.000Z",
+      "email": "abhishek555@gmail.com",
+      "password": "Admin@123",
+      "role": "admin",
+      "id": 1
+    },
+    {
+      "firstName": "shiwam",
+      "lastName": "nishad",
+      "dob": "1999-12-31T18:30:00.000Z",
+      "email": "shiwam@gmail.com",
+      "password": "Shiwam@123",
+      "role": "user",
+      "id": 2
+    }
+  ]
+}

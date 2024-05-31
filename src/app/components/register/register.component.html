@@ -1,0 +1,92 @@
+<div class="container">
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <mat-card>
+      <mat-card-title>Registration Form</mat-card-title>
+      <mat-card-content>
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" required />
+            @if (registrationForm.get('firstName')?.hasError('required')) {
+            <mat-error> First Name is required </mat-error>
+            }
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" required />
+            @if (registrationForm.get('lastName')?.hasError('required')) {
+            <mat-error> Last Name is required </mat-error>
+            }
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Date of Birth</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="dob"
+              required
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            @if (registrationForm.get('dob')?.hasError('required')) {
+            <mat-error> Date of Birth is required </mat-error>
+            }
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="email" required />
+            @if (registrationForm.get('email')?.hasError('required')) {
+            <mat-error> Email is required </mat-error>
+            } @else if(registrationForm.get('email')?.hasError('email')){
+            <mat-error> Invalid email </mat-error>
+            }
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              formControlName="password"
+              type="password"
+              required
+            />
+            @if (registrationForm.get('password')?.hasError('required')) {
+            <mat-error> Password is required </mat-error>
+            }
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <label for="role">Role</label>
+          <mat-radio-group id="role" formControlName="role" required>
+            <mat-radio-button value="admin">Admin</mat-radio-button>
+            <mat-radio-button value="user">User</mat-radio-button>
+          </mat-radio-group>
+          @if (registrationForm.get('role')?.hasError('required')) {
+          <mat-error> Role is required </mat-error>
+          }
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          type="button"
+          type="cancel"
+          (click)="onCancel()"
+        >
+          Cancel
+        </button>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

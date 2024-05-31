@@ -1,0 +1,36 @@
+.welcome {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+
+  & span {
+    font-size: 5rem;
+    font-weight: bold;
+  }
+
+  & a {
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  & a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  & .page {
+    padding-top: 2rem;
+  }
+}
+.nav-btns {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.admin-role-btns {
+  display: flex;
+  gap: 1rem;
+}
