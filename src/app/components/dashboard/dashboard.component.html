@@ -1,35 +1,3 @@
-@if(isMenuRequired){
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <div class="nav-btns">
-      @if(this.role ==='user'){
-
-      <button mat-raised-button color="accent" routerLink="/user">User</button>
-
-      }@else if(this.role ==='admin'){
-      <div class="admin-role-btns">
-        <button mat-raised-button color="accent" routerLink="/admin">
-          Admin
-        </button>
-        <button mat-raised-button color="accent" routerLink="/user">
-          User
-        </button>
-      </div>
-
-      }
-      <button
-        mat-raised-button
-        color="accent"
-        routerLink="/login"
-        (click)="logout()"
-      >
-        Logout
-      </button>
-    </div>
-  </mat-toolbar-row>
-</mat-toolbar>
-<router-outlet></router-outlet>
-}
 <div class="welcome">
   @if(!isLoggedIn() || !isRegistered()){
   <span>Angular 17 CRUD</span>
@@ -37,6 +5,5 @@
   <a routerLink="/login">Login</a>
   }@else{
   <span>Angular 17 CRUD</span>
-
   }
 </div>
