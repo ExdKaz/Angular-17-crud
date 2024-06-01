@@ -23,13 +23,18 @@ export class AppComponent implements DoCheck {
 
   logout() {
     this.isLoggedOut = false;
-    this.sharedService.isLoggedIn.set(false);
-    this.sharedService.isRegistered.set(false);
     sessionStorage.removeItem('authenticated');
     sessionStorage.removeItem('userInfo');
     this.role = '';
   }
   ngDoCheck() {
+    if (sessionStorage.getItem('userInfo') != null) {
+      this.sharedService.isLoggedIn.set(true);
+      this.sharedService.isRegistered.set(true);
+    } else {
+      this.sharedService.isLoggedIn.set(false);
+      this.sharedService.isRegistered.set(false);
+    }
     this.isRegistered = this.sharedService.isRegistered;
     this.isLoggedIn = this.sharedService.isLoggedIn;
     this.details = sessionStorage.getItem('userInfo');
