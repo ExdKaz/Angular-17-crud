@@ -44,5 +44,6 @@ module.exports = function (config) {
     browsers: ["Chrome"],
     restartOnFileChange: true,
     singleRun: false,
+    autoWatch: true,
   });
 };
