@@ -55,4 +55,10 @@ export class LoginComponent {
     }
   }
 
+  register() {
+    this.sharedService.isLoggedIn.set(false);
+    this.sharedService.isRegistered.set(false);
+    this.router.navigateByUrl('/register');
+  }
+
 }
