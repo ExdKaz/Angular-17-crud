@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MaterialModule } from 'src/app/material/material.module';
@@ -15,9 +15,17 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent {
 
-  isLoggedIn: boolean = false;
+
   submitted = false;
+  isRegistered = signal(false);
+  isLoggedIn = signal(false);
+  isLoginVisible: boolean = false;
   constructor(private formBuilder: FormBuilder, private service: UserService, private router: Router, private sharedService: SharedService) { }
+
+  ngOnInit() {
+    this.isRegistered = this.sharedService.isRegistered;
+    this.isLoggedIn = this.sharedService.isLoggedIn;
+  }
 
   loginForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -35,12 +43,12 @@ export class LoginComponent {
         next: (response: any) => {
           let loginedUser = response[0];
           if (this.loginForm.value.email === loginedUser.email) {
-            this.isLoggedIn = true;
             let details: any = {
               userName: this.loginForm.value.email,
               password: this.loginForm.value.password,
               role: loginedUser.role
             }
+            this.isLoginVisible = false;
             sessionStorage.setItem('userInfo', JSON.stringify(details));
             sessionStorage.setItem('authenticated', JSON.stringify('true'));
             alert('user successfully logged in');
@@ -59,6 +67,10 @@ export class LoginComponent {
     this.sharedService.isLoggedIn.set(false);
     this.sharedService.isRegistered.set(false);
     this.router.navigateByUrl('/register');
+  }
+
+  dashboard() {
+    this.router.navigateByUrl('/');
   }
 
 }

@@ -1,3 +1,4 @@
+@if(isLoginVisible){
 <mat-card class="login-card">
   <h2>Login</h2>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -26,8 +27,19 @@
     <button mat-raised-button color="primary" type="submit">Login</button>
   </form>
 </mat-card>
-
 <div class="reg">
   <span>Not yet registered?</span>
   <span (click)="register()">Click Here</span>
 </div>
+}@else{
+<div class="welcome">
+  @if(!isLoggedIn() || !isRegistered()){
+  <span>Angular 17 CRUD</span>
+  <a (click)="register()">Register</a>
+  <a (click)="isLoginVisible = true">Login</a>
+  }@else{
+  <span>Angular 17 CRUD</span>
+  <p (click)="dashboard()">Click Here to go back</p>
+  }
+</div>
+}
