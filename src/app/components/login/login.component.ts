@@ -46,12 +46,13 @@ export class LoginComponent {
             let details: any = {
               userName: this.loginForm.value.email,
               password: this.loginForm.value.password,
-              role: loginedUser.role
+              role: loginedUser.role,
+              profileName: `${loginedUser.firstName.charAt(0).toUpperCase() + loginedUser.firstName.slice(1).toLowerCase()} ${loginedUser.lastName.charAt(0).toUpperCase() + loginedUser.lastName.slice(1).toLowerCase()}`
+
             }
             this.isLoginVisible = false;
             sessionStorage.setItem('userInfo', JSON.stringify(details));
             sessionStorage.setItem('authenticated', JSON.stringify('true'));
-            alert('user successfully logged in');
             this.sharedService.isLoggedIn.set(true);
             this.sharedService.isRegistered.set(true);
             this.router.navigateByUrl('/')
