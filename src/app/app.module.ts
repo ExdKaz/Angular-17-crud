@@ -13,7 +13,7 @@ import { DatePipePipe } from './components/pipes/date-pipe.pipe';
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
