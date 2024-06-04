@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Register } from '../model/register';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,8 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  registerUser(userInfo: any): Observable<any> {
-    return this.http.post(this.url, userInfo);
+  registerUser(userInfo: Register): Observable<Register> {
+    return this.http.post<Register>(this.url, userInfo);
   }
 
   loginUser(loginInfo: any): Observable<any> {
@@ -26,5 +27,9 @@ export class UserService {
 
   getAdminData(): Observable<any> {
     return this.http.get(`${this.url}?role=${this.role.admin}`)
+  }
+
+  getUserData(): Observable<any> {
+    return this.http.get(`${this.url}?role=${this.role.user}`)
   }
 }

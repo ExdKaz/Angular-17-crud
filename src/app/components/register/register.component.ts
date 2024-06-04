@@ -5,19 +5,22 @@ import { Router } from '@angular/router';
 import { MaterialModule } from 'src/app/material/material.module';
 import { SharedService } from 'src/app/services/shared.service';
 import { UserService } from 'src/app/services/user.service';
+import { DatePipePipe } from '../pipes/date-pipe.pipe';
+import { Register } from 'src/app/model/register';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [MaterialModule, ReactiveFormsModule, CommonModule],
+  imports: [MaterialModule, ReactiveFormsModule, CommonModule, DatePipePipe],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
 
   isRegistered = signal(false);
+  updatedForm: any = new Register();
 
-  constructor(private formBuilder: FormBuilder, private service: UserService, private router: Router, private sharedService: SharedService) { }
+  constructor(private formBuilder: FormBuilder, private service: UserService, private router: Router, private sharedService: SharedService, private datePipe: DatePipePipe) { }
 
   registrationForm = this.formBuilder.group({
     firstName: ['', Validators.required],
@@ -34,10 +37,12 @@ export class RegisterComponent {
 
   onSubmit() {
     if (this.registrationForm.valid) {
-      this.service.registerUser(this.registrationForm.value).subscribe({
+      this.updatedForm = this.registrationForm.value;
+      this.service.registerUser(this.updatedForm).subscribe({
         next: () => {
           alert('Registration successful');
           const formValue = this.registrationForm.value;
+          formValue.dob = this.datePipe.transform(formValue.dob)
           let details: any = {
             userName: formValue.email ?? '',
             password: formValue.password ?? '',

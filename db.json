@@ -3,7 +3,7 @@
     {
       "firstName": "Abhishek",
       "lastName": "Rana",
-      "dob": "1999-03-12T18:30:00.000Z",
+      "dob": "1999-03-13T18:30:00.000Z",
       "email": "abhishek555@gmail.com",
       "password": "Admin@123",
       "role": "admin",
@@ -35,6 +35,24 @@
       "password": "Firoj@123",
       "role": "user",
       "id": 4
+    },
+    {
+      "firstName": "ajay",
+      "lastName": "singh",
+      "dob": "1997-03-19T18:30:00.000Z",
+      "email": "ajay@gmail.com",
+      "password": "Ajay@123",
+      "role": "user",
+      "id": 5
+    },
+    {
+      "firstName": "ankit",
+      "lastName": "kumar",
+      "dob": "1998-05-18T18:30:00.000Z",
+      "email": "ankit@gmail.com",
+      "password": "Ankit@123",
+      "role": "user",
+      "id": 6
     }
   ]
 }
