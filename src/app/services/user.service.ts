@@ -7,6 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
+  role: { user: string, admin: string } = {
+    user: 'user',
+    admin: 'admin'
+  }
+
   url: string = 'http://localhost:3000/users';
 
   constructor(private http: HttpClient) { }
@@ -17,5 +22,9 @@ export class UserService {
 
   loginUser(loginInfo: any): Observable<any> {
     return this.http.get(`${this.url}?email=${loginInfo.email}`)
+  }
+
+  getAdminData(): Observable<any> {
+    return this.http.get(`${this.url}?role=${this.role.admin}`)
   }
 }

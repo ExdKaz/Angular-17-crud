@@ -59,6 +59,9 @@ export class LoginComponent {
           } else {
             alert('User is not registered.')
           }
+        },
+        error: () => {
+          alert('Error while Logging in');
         }
       })
     }

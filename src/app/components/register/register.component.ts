@@ -37,9 +37,13 @@ export class RegisterComponent {
       this.service.registerUser(this.registrationForm.value).subscribe({
         next: () => {
           alert('Registration successful');
+          const formValue = this.registrationForm.value;
           let details: any = {
-            userName: this.registrationForm.value.email,
-            password: this.registrationForm.value.password,
+            userName: formValue.email ?? '',
+            password: formValue.password ?? '',
+            role: formValue.role ?? 'user',
+            profileName: `${(formValue.firstName?.charAt(0).toUpperCase() ?? '') + (formValue.firstName?.slice(1).toLowerCase() ?? '')} ${(formValue.lastName?.charAt(0).toUpperCase() ?? '') + (formValue.lastName?.slice(1).toLowerCase() ?? '')}`
+
           }
           sessionStorage.setItem('userInfo', JSON.stringify(details));
           sessionStorage.setItem('authenticated', JSON.stringify('true'));
