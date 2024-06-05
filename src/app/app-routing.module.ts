@@ -12,9 +12,15 @@ const routes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [authGuard] },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'user', component: UserComponent, canActivate: [authGuard] },
-  { path: 'admin', component: AdminComponent, canActivate: [authGuard] },
-  { path: 'not-authorized', component: NotAuthorizedComponent }
+  {
+    path: 'user', loadComponent: () => import("../app/components/user/user.component").then((m) => m.UserComponent), canActivate: [authGuard]
+  },
+  {
+    path: 'admin', loadComponent: () => import("../app/components/admin/admin.component").then((m) => m.AdminComponent), canActivate: [authGuard]
+  },
+  {
+    path: 'not-authorized', loadComponent: () => import("../app/components/not-authorized/not-authorized.component").then((m) => m.NotAuthorizedComponent), canActivate: [authGuard]
+  },
 ];
 
 @NgModule({
