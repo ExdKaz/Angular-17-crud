@@ -13,7 +13,7 @@ import { DatePipePipe } from '../pipes/date-pipe.pipe';
   styleUrl: './admin.component.scss'
 })
 export class AdminComponent implements OnInit {
-  displayedColumns: string[] = ['firstName', 'lastName', 'dob', 'email', 'password', 'role'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'dob', 'email', 'password', 'role', 'edit', 'delete'];
   data: any[] = [];
   dataSource = new MatTableDataSource(this.data);
   constructor(private userService: UserService, private datePipe: DatePipePipe) { }
