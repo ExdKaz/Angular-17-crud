@@ -15,7 +15,7 @@ import { TableComponent } from 'src/app/shared/table/table.component';
 })
 export class UserComponent implements OnInit {
 
-  displayedColumns: string[] = ['firstName', 'lastName', 'dob', 'email', 'password', 'role'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'dob', 'email', 'password', 'role', 'edit', 'delete'];
   data: any[] = [];
   dataSource = new MatTableDataSource(this.data);
   constructor(private datePipe: DatePipePipe, private userService: UserService) {

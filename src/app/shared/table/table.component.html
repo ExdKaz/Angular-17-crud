@@ -17,7 +17,29 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>
         {{ column | titlecase }}
       </th>
+      @if(column==='edit'){
+      <td mat-cell *matCellDef="let row">
+        <button
+          mat-mini-fab
+          color="primary"
+          aria-label="Example icon button with a delete icon"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+      }@else if(column==='delete'){
+      <td mat-cell *matCellDef="let row">
+        <button
+          mat-mini-fab
+          color="warn"
+          aria-label="Example icon button with a delete icon"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+      }@else {
       <td mat-cell *matCellDef="let row">{{ row[column] }}</td>
+      }
     </ng-container>
     }
 
